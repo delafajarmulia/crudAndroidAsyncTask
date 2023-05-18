@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".PostActivity"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="15sp"
+            android:layout_width= "70dp"
+            android:layout_height="wrap_content"
+            android:text="Name "/>
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="15sp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Job "/>
+        <EditText
+            android:id="@+id/input_job"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_add_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="ADD"/>
+</LinearLayout>
