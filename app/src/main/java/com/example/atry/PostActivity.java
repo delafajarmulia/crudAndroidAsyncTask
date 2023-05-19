@@ -3,6 +3,7 @@ package com.example.atry;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.AsyncTaskLoader;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -81,6 +82,10 @@ public class PostActivity extends AppCompatActivity {
                 while ((line = rd.readLine()) != null){
                     Log.i("data", line);
                 }
+
+                Log.d("data", "successfully add new user");
+                Intent intent = new Intent(PostActivity.this, MainActivity.class);
+                startActivity(intent);
             } catch (Exception e){
                 e.printStackTrace();
             } finally {

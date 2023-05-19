@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.AsyncTaskLoader;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +35,7 @@ public class DetailUserActivity extends AppCompatActivity {
     int id, idFromIntent;
     ImageView avatar;
     String firstName, lastName, email;
+    Button btnUpdate, btnDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,25 @@ public class DetailUserActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         idFromIntent = extras.getInt("id");
         new callApi().execute();
+
+        btnUpdate = findViewById(R.id.btn_edit_user);
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailUserActivity.this, UpdateActivity.class);
+                intent.putExtra("id", idFromIntent);
+                startActivity(intent);
+            }
+        });
         ////new DownloadImageTask(avatar).execute();
+
+        btnDelete = findViewById(R.id.btn_delete_user);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new deleteUser().execute();
+            }
+        });
     }
 
     private class callApi extends AsyncTask<String, String, UserDetail>{
@@ -62,11 +84,6 @@ public class DetailUserActivity extends AppCompatActivity {
                 scanner.close();
 
                 JSONObject jsonObject = new JSONObject(responseBody);
-//                id = jsonObject.getInt("id");
-//                firstName = jsonObject.getString("first_name");
-//                lastName = jsonObject.getString("last_name");
-//                email = jsonObject.getString("email");
-//                avatar = jsonObject.getString("avatar");
                 JSONObject data = jsonObject.getJSONObject("data");
                 return new UserDetail(
                         data.getInt("id"),
@@ -135,6 +152,25 @@ public class DetailUserActivity extends AppCompatActivity {
         @Override
         protected  void onPostExecute(Bitmap result){
             bmImage.setImageBitmap(result);
+        }
+    }
+
+    private class deleteUser extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                URL url = new URL("https://reqres.in/api/users/" + idFromIntent);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("DELETE");
+                con.setRequestProperty("Content-type", "application/json");
+
+                int code = con.getResponseCode();
+                System.out.println(code);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 
