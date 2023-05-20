@@ -7,11 +7,16 @@
     tools:context=".DetailUserActivity"
     android:orientation="vertical"
     android:layout_margin="@dimen/margin">
-    <ImageView
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/avatar_user"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_launcher_background"/>
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_launcher_background"
+        app:shapeAppearanceOverlay="@style/Circular"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
     <TextView
         android:id="@+id/user_id"
         android:layout_marginTop="50dp"
@@ -19,28 +24,24 @@
         android:layout_height="wrap_content"
         android:text="User Id : 1"
         android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textAlignment="center"/>
     <TextView
-        android:id="@+id/user_f_name"
+        android:id="@+id/user_fl_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="First Name : lorem"
         android:textSize="15sp"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/user_l_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Last Name : lorem"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textAlignment="center"/>
     <TextView
         android:id="@+id/user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="First Name : lorem"
         android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textAlignment="center"/>
     <Button
         android:id="@+id/btn_edit_user"
         android:layout_width="match_parent"

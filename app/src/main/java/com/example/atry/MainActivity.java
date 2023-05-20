@@ -1,20 +1,26 @@
 package com.example.atry;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.example.atry.adapter.MainAdapter;
 import com.example.atry.model.UserModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,11 +36,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MainAdapter adapter;
     private FloatingActionButton btnFab;
+    BottomNavigationView bottomNavigationView;
+    TextClock clock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        clock = findViewById(R.id.clock);
+        clock.setFormat12Hour("hh:mm:ss a");
 
         btnFab = findViewById(R.id.fab);
         new callApi().execute();
@@ -44,6 +55,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, PostActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Activity selectedActivity = null;
+                switch (item.getItemId()){
+                    case R.id.home:
+                        selectedActivity = new MainActivity(); break;
+                    case R.id.group:
+                        selectedActivity = new GroupActivity(); break;
+                    case R.id.profile:
+                        selectedActivity = new ProfileActivity(); break;
+                }
+
+                Intent intent = new Intent(MainActivity.this, selectedActivity.getClass());
+                startActivity(intent);
+                return true;
             }
         });
     }

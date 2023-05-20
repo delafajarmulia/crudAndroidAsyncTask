@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -23,7 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class UpdateActivity extends AppCompatActivity {
-    TextView txtName, txtJob;
+    TextView txtName, txtJob, txtPw;
     Button btnEdit;
     String name, job;
     int id;
@@ -48,6 +53,23 @@ public class UpdateActivity extends AppCompatActivity {
                 new UpdateUser().execute();
             }
         });
+
+        txtPw = findViewById(R.id.input_pw);
+        txtPw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        //String[] hobies = {"eat", "sleep", "run"};
+//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.hobies, R.layout.activity_update);
+//        adapter.setDropDownViewResource(R.layout.activity_update);
+//        spinner.setAdapter(adapter);
+
+//        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//                spinner.setOnItemClickListener(this);
+//            }
+//        });
     }
 
     private class UpdateUser extends AsyncTask<Void, Void, Void>{

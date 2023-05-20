@@ -109,49 +109,38 @@ public class DetailUserActivity extends AppCompatActivity {
 
             avatar = (ImageView) findViewById(R.id.avatar_user);
             TextView id = (TextView) findViewById(R.id.user_id);
-            TextView fName = (TextView) findViewById(R.id.user_f_name);
-            TextView lName = (TextView) findViewById(R.id.user_l_name);
+            TextView name = (TextView) findViewById(R.id.user_fl_name);
+            //TextView lName = (TextView) findViewById(R.id.user_l_name);
             TextView txtEmail = (TextView) findViewById(R.id.user_email);
 
-            id.setText("User id :" + s.getId());
-            fName.setText("First name: " + s.getFirstName());
-            lName.setText("Last name : " + s.getLastName());
-            txtEmail.setText("Email : " + s.getEmail());
+            id.setText("Id :" + s.getId());
+            name.setText(s.getFirstName() + " " + s.getLastName());
+            //lName.setText("Last name : " + s.getLastName());
+            txtEmail.setText(s.getEmail());
 
-//            try {
-//                URL urlImage =  new URL(s.getAvatar());
-//                Bitmap bmp = BitmapFactory.decodeStream(urlImage.openConnection().getInputStream());
-//                avatar.setImageBitmap(bmp);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-
-            //new DownloadImageTask((ImageView) findViewById(R.id.avatar_user)).execute(s.getAvatar());
-//            UrlImage
-//            Bitmap imgBitmap = BitmapFactory.decodeFile(s.getAvatar());
-//            avatar.setImageBitmap(imgBitmap);
-//            avatar.setImageURI(s.getAvatar());
+            new DownloadImage().execute(s.getAvatar());
         }
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
-        ImageView bmImage;
+    private class DownloadImage extends AsyncTask<String, Void, Bitmap>{
+
         @Override
-        protected Bitmap doInBackground(String... urls) {
-            String urlDisplay = urls[0];
-            Bitmap mIcon11 = null;
+        protected Bitmap doInBackground(String... url) {
+            String imageURL = url[0];
+            Bitmap bitmap = null;
             try {
-                InputStream in = new URL(urlDisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            }catch (Exception e){
+                InputStream inputStream = new URL(imageURL).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (Exception e){
                 e.printStackTrace();
             }
-            return mIcon11;
+            return bitmap;
         }
 
         @Override
-        protected  void onPostExecute(Bitmap result){
-            bmImage.setImageBitmap(result);
+        protected void onPostExecute(Bitmap result){
+            avatar.setImageBitmap(result);
+            System.out.println("hey");
         }
     }
 
@@ -167,37 +156,13 @@ public class DetailUserActivity extends AppCompatActivity {
 
                 int code = con.getResponseCode();
                 System.out.println(code);
+
+                Intent intent = new Intent(DetailUserActivity.this, MainActivity.class);
+                startActivity(intent);
             } catch (Exception e){
                 e.printStackTrace();
             }
             return null;
         }
     }
-
-//    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
-//        ImageView bmImage;
-//        public DownloadImageTask(ImageView bmImage){
-//            this.bmImage = bmImage;
-//        }
-//
-//        @Override
-//        protected Bitmap doInBackground(String... urls) {
-//            String urlDisplay = urls[0];
-//            Bitmap bmp = null;
-//            try {
-//                URL url = new URL(userDetail.getAvatar());
-//
-//                InputStream in = new URL(urlDisplay).openStream();
-//                bmp = BitmapFactory.decodeStream(in);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//            return bmp;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Bitmap result){
-//            bmImage.setImageBitmap(result);
-//        }
-//    }
 }
