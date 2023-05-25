@@ -8,21 +8,6 @@
     android:orientation="vertical"
     android:layout_margin="@dimen/margin">
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/filled"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        android:layout_marginTop="55dp"-->
-<!--        android:layout_marginEnd="3dp"-->
-<!--        android:hint="Enter something"-->
-<!--        style="@style/Widget.Design.TextInputLayout">-->
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/edit_text"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"/>-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,16 +53,27 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="15sp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Hobby "/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:entries="@array/hobies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_edit_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="save"/>
-
-<!--    <Spinner-->
-<!--        android:id="@+id/spinner"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/margin"/>-->
 </LinearLayout>

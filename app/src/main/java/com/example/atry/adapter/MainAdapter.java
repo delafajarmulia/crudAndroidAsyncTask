@@ -29,13 +29,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.HolderData> {
     LayoutInflater inflater;
     public MainAdapter(List<UserModel> userModels){
         this.users = userModels;
-        //this.inflater = LayoutInflater.from(context);
     }
-
-//    JSONArray users;
-//    public MainAdapter(List<UserModel> users){
-//        this.users = users;
-//    }
 
     @NonNull
     @Override

@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
                     users.add(new UserModel(
                             data.getJSONObject(i).getInt("id"),
                             data.getJSONObject(i).getString("first_name"),
-                            data.getJSONObject(i).getString("email")
+                            data.getJSONObject(i).getString("email"),
+                            data.getJSONObject(i).getString("avatar")
                     ));
                 }
             } catch (Exception e){

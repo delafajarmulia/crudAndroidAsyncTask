@@ -44,11 +44,14 @@ public class UpdateActivity extends AppCompatActivity {
         txtName = findViewById(R.id.edit_name);
         txtJob = findViewById(R.id.edit_job);
         btnEdit = findViewById(R.id.btn_edit_user);
+
+        Spinner list = findViewById(R.id.spinner);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 name = txtName.getText().toString();
                 job = txtJob.getText().toString();
+                String spinnerValue = list.getSelectedItem().toString();
 
                 new UpdateUser().execute();
             }
@@ -56,20 +59,6 @@ public class UpdateActivity extends AppCompatActivity {
 
         txtPw = findViewById(R.id.input_pw);
         txtPw.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
-        //String[] hobies = {"eat", "sleep", "run"};
-//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.hobies, R.layout.activity_update);
-//        adapter.setDropDownViewResource(R.layout.activity_update);
-//        spinner.setAdapter(adapter);
-
-//        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//                spinner.setOnItemClickListener(this);
-//            }
-//        });
     }
 
     private class UpdateUser extends AsyncTask<Void, Void, Void>{

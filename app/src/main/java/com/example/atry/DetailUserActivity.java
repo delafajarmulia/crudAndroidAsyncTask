@@ -110,12 +110,10 @@ public class DetailUserActivity extends AppCompatActivity {
             avatar = (ImageView) findViewById(R.id.avatar_user);
             TextView id = (TextView) findViewById(R.id.user_id);
             TextView name = (TextView) findViewById(R.id.user_fl_name);
-            //TextView lName = (TextView) findViewById(R.id.user_l_name);
             TextView txtEmail = (TextView) findViewById(R.id.user_email);
 
             id.setText("Id :" + s.getId());
             name.setText(s.getFirstName() + " " + s.getLastName());
-            //lName.setText("Last name : " + s.getLastName());
             txtEmail.setText(s.getEmail());
 
             new DownloadImage().execute(s.getAvatar());
@@ -140,7 +138,6 @@ public class DetailUserActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Bitmap result){
             avatar.setImageBitmap(result);
-            System.out.println("hey");
         }
     }
 

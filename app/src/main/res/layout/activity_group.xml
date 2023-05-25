@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GroupActivity"
-    android:orientation="vertical">
-    <TextView
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/margin">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello from group"/>
+        android:layout_height="wrap_content"/>
 
     <include layout="@layout/fragment_bottom"/>
 

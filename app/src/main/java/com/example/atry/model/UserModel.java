@@ -3,7 +3,18 @@ package com.example.atry.model;
 public class UserModel {
 
     private int id;
-    private String firstName, email;
+    private String firstName;
+    private String email;
+
+    public String getUrlAvatar() {
+        return urlAvatar;
+    }
+
+    public void setUrlAvatar(String urlAvatar) {
+        this.urlAvatar = urlAvatar;
+    }
+
+    private String urlAvatar;
 
     public int getId() {
         return id;
@@ -29,9 +40,10 @@ public class UserModel {
         this.email = email;
     }
 
-    public UserModel(int id, String firstName, String email) {
+    public UserModel(int id, String firstName, String email, String urlAvatar) {
         this.id = id;
         this.firstName = firstName;
         this.email = email;
+        this.urlAvatar = urlAvatar;
     }
 }
